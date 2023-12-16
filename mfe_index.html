@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "TEMPLATE": "http://127.0.0.1:5173/dist/static/js/main.js",
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "react": "https://unpkg.com/react@18/umd/react.development.js",
+          "react-dom": "https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+
+    <script>
+      System.import('single-spa').then(function (singleSpa) {
+        singleSpa.registerApplication({
+          name: 'template',
+          app: () => System.import('TEMPLATE'),
+          activeWhen: () => true,
+          customProps: {
+            domElement: document.getElementById('root'),
+          },
+        });
+        singleSpa.start();
+      });
+    </script>
+
+    <title>MFE Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
